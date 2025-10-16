@@ -1,0 +1,156 @@
+
+ body {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.navbar {
+    background-color: rgba(0, 0, 0, 0.8) !important;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+.navbar-brand {
+    color: #667eea !important;
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.user-info {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.user-details {
+    text-align: end;
+}
+
+.user-name {
+    color: white;
+    font-weight: bold;
+    font-size: 1rem;
+    margin: 0;
+}
+
+.user-role {
+    font-size: 0.85rem;
+    color: #667eea;
+    text-transform: uppercase;
+    margin: 0;
+}
+
+.token-timer {
+    font-size: 0.85rem;
+    color: #ff6b6b;
+    font-weight: bold;
+}
+
+.container-main {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+}
+
+.login-card {
+    max-width: 500px;
+    width: 100%;
+}
+
+.card {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem;
+    text-align: center;
+}
+
+.card-header h2 {
+    margin: 0;
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.card-body {
+    padding: 2rem;
+}
+
+.demo-users {
+    background-color: #f5f5f5;
+    border-left: 4px solid #667eea;
+    font-size: 0.9rem;
+}
+
+.demo-users p {
+    margin: 0.5rem 0;
+}
+
+.demo-users code {
+    background-color: #e9ecef;
+    padding: 2px 6px;
+    border-radius: 3px;
+}
+
+.dashboard-content {
+    width: 100%;
+    padding: 2rem;
+}
+
+.dashboard-card {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+}
+
+.dashboard-card h2 {
+    color: #667eea;
+    margin-bottom: 1rem;
+    font-size: 1.5rem;
+}
+
+.dashboard-card p {
+    color: #555;
+    line-height: 1.6;
+}
+
+.admin-only {
+    border-left: 4px solid #ff6b6b;
+}
+
+.info-text {
+    font-size: 0.9rem;
+    color: #999;
+    margin-top: 0.5rem;
+}
+
+.alert {
+    margin-bottom: 1rem;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    font-weight: bold;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, #5568d3 0%, #653a8b 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 20px rgba(102, 126, 234, 0.3);
+}
+
+.btn-primary:active {
+    transform: translateY(0);
+}
