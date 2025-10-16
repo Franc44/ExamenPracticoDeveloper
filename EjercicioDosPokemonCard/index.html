@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"  content="width=device-width, initial-scale=1.0">
+        <title>Buscador cartas Pokémon</title>
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!-- PAGINA LOGIN -->
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                   🔎 Buscador cartas Pokémon
+                </a>
+            </div>
+        </nav>
+
+        <!-- Contenido Principal de la pagina -->
+         <div class="container-main">
+             <!-- Página de Login -->
+            <div id="loginPage" class="login-card">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>🔎 Busca a tu Pokémon</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="input-group mb-4">
+                            <input 
+                                type="text" 
+                                id="searchInput" 
+                                class="form-control" 
+                                placeholder="Busca un Pokémon por nombre o ID..."
+                                autocomplete="off"
+                            >
+                            <button class="btn btn-primary" onclick="searchPokemon()">Buscar</button>
+                        </div>
+
+                        <div id="loading" class="text-center py-3 d-none">
+                            <div class="loading-text">⏳ Cargando...</div>
+                        </div>
+
+                        <div class="alert alert-danger d-none" role="alert" id="errorAlert"></div>
+                        
+                         <div class="card-container d-none" id="cardContainer">
+                            <div class="pokemon-card" id="card">
+                                <!-- Frente de la card -->
+                                <div class="card-face card-front">
+                                    <img id="pokemonImage" class="pokemon-image" alt="Pokémon">
+                                    <div class="pokemon-id" id="pokemonId"></div>
+                                    <div class="pokemon-name" id="pokemonName"></div>
+                                    <div id="pokemonTypes" class="d-flex gap-2 justify-content-center flex-wrap mb-2"></div>
+                                    <div class="info-text">👀 Haz clic para ver estadísticas</div>
+                                </div>
+
+                                <!-- Reverso de la card -->
+                                <div class="card-face card-back">
+                                    <div class="w-100">
+                                        <h3 class="mb-3 text-center">Estadísticas Base</h3>
+                                        <div class="row g-3" id="statsGrid"></div>
+                                    </div>
+                                    <div class="info-text">👀 Haz clic para volver</div>
+                                </div>
+                            </div>
+                        </div>
+                       
+                    </div>
+                </div>
+            </div>
+
+        <!-- SCRIPTS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
