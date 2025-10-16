@@ -16,12 +16,13 @@
                 <a class="navbar-brand" href="#">
                     🔐 Aplicación de Autenticación
                 </a>
-                <div id="userInfo">
+                <div class="user-info" id="userInfo">
                     <div class="user-details">
-                        <p id="userName">👨🏻‍💼 Usuario</p>
-                        <p id="userRole">🎭 Rol</p>
+                        <p class="user-name" id="userName">👨🏻‍💼 Usuario</p>
+                        <p class="user-role" id="userRole">🎭 Rol</p>
                     </div>
-                    <button class="btn btn-danger btn-sm">
+                    <div class="token-timer" id="tokenTimer"></div>
+                    <button class="btn btn-danger btn-sm" onclick="logout()">
                         ⍈ Cerrar sesión
                     </button>
                 </div>
@@ -29,9 +30,9 @@
         </nav>
 
         <!-- Contenido Principal de la pagina -->
-         <div class="container">
+         <div class="container-main">
              <!-- Página de Login -->
-            <div id="loginPage">
+            <div id="loginPage" class="login-card">
                 <div class="card">
                     <div class="card-header">
                         <h2>🔐 Iniciar Sesión</h2>
@@ -45,6 +46,21 @@
                         </div>
                         <div class="alert alert-success d-none" role="alert" id="successAlert">
                             <span id="successMessage"></span>
+                        </div>
+                        
+                        <div class="alert alert-info demo-users">
+                            <h6 class="alert-heading">
+                                📋 Usuarios de prueba:
+                            </h6>
+                            <hr>
+                            <p class="mb-1">
+                                📧 Email: <code>admin@app.com</code> | 
+                                🔑 Contraseña: <code>admin123</code>
+                            </p>
+                            <p class="mb-0">
+                                📧 Email: <code>user@app.com</code> | 
+                                🔑 Contraseña: <code>user123</code>
+                            </p>
                         </div>
 
                         <form id="loginForm" onsubmit="login(event)">
