@@ -39,18 +39,33 @@
                             <button class="btn btn-primary" ">Buscar</button>
                         </div>
 
-                        <div class="alert alert-danger d-none" role="alert" id="errorAlert">
-                            <span id="errorMessage"></span>
+                        <div id="loading" class="text-center py-3 d-none">
+                            <div class="loading-text">⏳ Cargando...</div>
                         </div>
-                        <div class="alert alert-warning d-none" role="alert" id="warningAlert">
-                            <span id="warningMessage"></span>
-                        </div>
-                        <div class="alert alert-success d-none" role="alert" id="successAlert">
-                            <span id="successMessage"></span>
-                        </div>
-                        
-                       
 
+                        <div class="alert alert-danger d-none" role="alert" id="errorAlert"></div>
+                        
+                         <div class="card-container " id="cardContainer">
+                            <div class="pokemon-card" id="card">
+                                <!-- Frente de la card -->
+                                <div class="card-face card-front">
+                                    <img id="pokemonImage" class="pokemon-image" alt="Pokémon">
+                                    <div class="pokemon-id" id="pokemonId"></div>
+                                    <div class="pokemon-name" id="pokemonName"></div>
+                                    <div id="pokemonTypes" class="d-flex gap-2 justify-content-center flex-wrap mb-2"></div>
+                                    <div class="info-text">👀 Haz clic para ver estadísticas</div>
+                                </div>
+
+                                <!-- Reverso de la card -->
+                                <div class="card-face card-back">
+                                    <div class="w-100">
+                                        <h3 class="mb-3 text-center">Estadísticas Base</h3>
+                                        <div class="row g-3" id="statsGrid"></div>
+                                    </div>
+                                    <div class="info-text">👀 Haz clic para volver</div>
+                                </div>
+                            </div>
+                        </div>
                        
                     </div>
                 </div>
