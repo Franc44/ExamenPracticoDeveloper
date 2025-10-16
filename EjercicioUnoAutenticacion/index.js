@@ -1,3 +1,8 @@
+// CARGA
+window.addEventListener('load', () => {
+    updateNavbar();
+});
+
 //TOKEN
 const AuthService = {
     // Usuarios válidos de prueba
@@ -103,6 +108,11 @@ function login(event) {
 
     showAlert('success', `✅ ¡Bienvenido ${user.name}!`);
     document.getElementById('loginForm').reset();
+
+    // Actualizar UI después de 500ms para ver la animación
+    setTimeout(() => {
+        updateNavbar();
+    }, 500);
 }
 
 function logout() {
@@ -137,6 +147,45 @@ function showAlert(type, message) {
             setTimeout(() => {
                 alertEl.classList.add('d-none');
             }, 5000);
+        }
+    }
+}
+
+function switchToPage(pageId) {
+    document.getElementById('loginPage').classList.add('d-none');
+    document.getElementById('dashboard').classList.add('d-none');
+    document.getElementById(pageId).classList.remove('d-none');
+}
+
+function updateNavbar() {
+    const isAuthenticated = AuthService.isAuthenticated();
+    const userInfo = document.getElementById('userInfo');
+
+    if (isAuthenticated) {
+        const user = AuthService.getUser();
+        document.getElementById('userName').textContent = user.name;
+        document.getElementById('userRole').textContent = user.role;
+        userInfo.style.display = 'flex';
+        switchToPage('dashboard');
+        updateDashboard();
+    } else {
+        userInfo.style.display = 'none';
+        switchToPage('loginPage');
+    }
+}
+
+function updateDashboard() {
+    const user = AuthService.getUser();
+    if (user) {
+        document.getElementById('dashEmail').textContent = user.email;
+        document.getElementById('dashRole').textContent = user.role;
+
+        // Mostrar panel de admin solo si el usuario es administrador
+        const adminSection = document.getElementById('adminSection');
+        if (user.role === 'admin') {
+            adminSection.style.display = 'block';
+        } else {
+            adminSection.style.display = 'none';
         }
     }
 }

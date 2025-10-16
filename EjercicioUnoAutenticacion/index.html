@@ -83,6 +83,28 @@
                     </div>
                 </div>
             </div>
+            
+            <!-- Dashboard -->
+             <div id="dashboard" class="d-none dashboard-content">
+                <div class="dashboard-card">
+                    <h2>🎯 Bienvenido</h2>
+                    <p>Has iniciado sesión correctamente en el sistema</p>
+                    <p class="info-text"> - El token expira automáticamente después de 2 minutos.</p>
+                </div>
+
+                <!--GENERAL-->
+                <div class="dashboard-card">
+                    <h2><i class="bi bi-person-fill"></i>Información del Usuario</h2>
+                    <p><strong>Email: </strong> <span id="dashEmail"></span></p>
+                    <p><strong>Rol: </strong> <span id="dashRole"></span></p>
+                </div>
+
+                <!--SOLO ADMIN-->
+                <div id="adminSection" class="dashboard-card admin-only">
+                    <h2>⚙️ Panel de Administrador</h2>
+                    <p>Esta sección solo puede ser visualiada por administradores del sistema.</p>
+                </div>
+             </div>
         </div>
 
         <!-- SCRIPTS -->
