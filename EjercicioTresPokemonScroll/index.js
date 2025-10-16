@@ -12,7 +12,7 @@ const pokemonCache = {};
 // Inicializar la aplicación
 async function init() {
     await loadTypes();
-    
+    await loadInitialPokemon();
 }
 
 // Cargar tipos de Pokémon
@@ -34,7 +34,92 @@ async function loadTypes() {
     }
 }
 
+// Cargar Pokémon iniciales
+async function loadInitialPokemon() {
+    try {
+        setLoading(true);
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon?limit=1000`);
+        const data = await response.json();
+        allPokemon = data.results;
+        filteredPokemon = [...allPokemon];
+        
+        await loadMorePokemon();
+        updateTotalCount();
+    } catch (error) {
+        console.error('Error cargando Pokémon:', error);
+    }
+}
 
+// Cargar más Pokémon (paginación)
+async function loadMorePokemon() {
+    if (isLoading || currentOffset >= filteredPokemon.length) return;
+    
+    isLoading = true;
+    setLoading(true);
+
+    const batch = filteredPokemon.slice(currentOffset, currentOffset + limit);
+    
+    try {
+        // Cargar detalles en paralelo con Promise.all
+        const promises = batch.map(pokemon => fetchPokemonDetails(pokemon.url));
+        const pokemonDetails = await Promise.all(promises);
+        
+        displayedPokemon = [...displayedPokemon, ...pokemonDetails];
+        renderPokemonGrid(pokemonDetails, true);
+        
+        currentOffset += limit;
+    } catch (error) {
+        console.error('Error cargando detalles:', error);
+    } finally {
+        isLoading = false;
+        setLoading(false);
+    }
+}
+
+// Obtener detalles de un Pokémon
+async function fetchPokemonDetails(url) {
+    if (pokemonCache[url]) {
+        return pokemonCache[url];
+    }
+
+    const response = await fetch(url);
+    const data = await response.json();
+    pokemonCache[url] = data;
+    return data;
+}
+
+// Renderizar la cuadrícula
+function renderPokemonGrid(pokemonList, append = false) {
+    const grid = document.getElementById('pokemonGrid');
+    
+    if (!append) {
+        grid.innerHTML = '';
+    }
+
+    if (pokemonList.length === 0 && !append) {
+        showError('❌ No se encontraron Pokémon con ese criterio');
+        return;
+    }
+
+    hideError();
+
+    pokemonList.forEach(pokemon => {
+        const card = document.createElement('div');
+        card.className = 'pokemon-card';
+        card.onclick = () => openPokemonModal(pokemon);
+        
+        card.innerHTML = `
+            <img src="${pokemon.sprites.front_default}" alt="${pokemon.name}">
+            <div class="pokemon-card-name">${pokemon.name}</div>
+            <div class="pokemon-card-id">#${pokemon.id.toString().padStart(3, '0')}</div>
+            <div class="mt-2">
+                ${pokemon.types.map(t => `<span class="mini-type-badge">${t.type.name}</span>`).join('')}
+            </div>
+        `;
+        
+        grid.appendChild(card);
+    });
+}
 
 // Actualizar contador
 function updateTotalCount() {
