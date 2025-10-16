@@ -1,5 +1,10 @@
 # Examen Practico
 
+## 👤 Autor
+
+**Francisco Alberto Ramirez Diaz**
+- GitHub: [@Franc44](https://github.com/Franc44)
+
 Examen practico para el puesto de desarrollador de software Full Stack 
 
 # 🎯 Descripción General
@@ -103,10 +108,4 @@ cd pokedex-project
 
 # Abrir cualquier ejercicio
 # Opción 1: Doble click en el archivo index.html de cualquier carpeta
-
-## 👤 Autor
-
-**Francisco Alberto Ramirez Diaz**
-- GitHub: [@Franc44](https://github.com/Franc44)
-
 ---
