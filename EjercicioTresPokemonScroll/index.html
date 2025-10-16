@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport"  content="width=device-width, initial-scale=1.0">
+        <title>Buscador cartas Pokémon</title>
+         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.0/font/bootstrap-icons.css">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <!-- PAGINA LOGIN -->
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="#">
+                   🔴 Pokédex
+                </a>
+            </div>
+        </nav>
+
+        <!-- Contenido Principal de la pagina -->
+         <div class="container-main">
+             <!-- Página de Login -->
+            <div id="loginPage" class="login-card">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>🔎 Explora a los Pokemones</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">🔍 Buscar por nombre o ID:</label>
+                                <div class="input-group mb-4">
+                                    <input 
+                                        type="text" 
+                                        id="searchInput" 
+                                        class="form-control" 
+                                        placeholder="Ej: pikachu, 25..."
+                                        autocomplete="off"
+                                    >
+                                    <button class="btn btn-primary" onclick="searchPokemon()">Buscar</button>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label fw-bold">🎯 Filtrar por tipo:</label>
+                                <select id="typeFilter" class="form-select">
+                                    <option value="">Todos los tipos</option>
+                                </select>
+                            </div>
+
+                            <div class="mt-2 mb-4">
+                                <span class="badge bg-primary" id="totalCount">Total: 0 Pokémon</span>
+                            </div>
+                        </div>
+
+                        <div id="loading" class="text-center py-3 d-none">
+                            <div class="loading-text">⏳ Cargando...</div>
+                        </div>
+
+                        <div class="alert alert-danger d-none" role="alert" id="errorAlert"></div>
+
+                        <div class="pokemon-grid" id="pokemonGrid"></div>
+                    </div>
+                </div>
+            </div>
+         </div>
+
+        <!-- Modal para detalles -->
+        <div class="modal fade" id="pokemonModal" tabindex="-1">
+            <div class="modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title">Detalles del Pokémon</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="modal-card-container mt-0">
+                            <div class="modal-pokemon-card" id="modalCard">
+                                <!-- Frente -->
+                                <div class="modal-card-face modal-card-front">
+                                    <img id="modalPokemonImage" class="modal-pokemon-image" alt="Pokémon">
+                                    <div class="modal-pokemon-id" id="modalPokemonId"></div>
+                                    <div class="modal-pokemon-name" id="modalPokemonName"></div>
+                                    <div id="modalPokemonTypes"></div>
+                                    <div class="info-text">💡 Haz clic en la card para ver estadísticas</div>
+                                </div>
+
+                                <!-- Reverso -->
+                                <div class="modal-card-face modal-card-back">
+                                    <div class="w-100">
+                                        <h4 class="mb-3">Estadísticas Base</h4>
+                                        <div class="row g-2" id="modalStatsGrid"></div>
+                                    </div>
+                                    <div class="info-text">💡 Haz clic para volver</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- SCRIPTS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+        <script src="index.js"></script>
+    </body>
+</html>
