@@ -3,6 +3,15 @@ window.addEventListener('load', () => {
     updateNavbar();
 });
 
+// Validar token cada 30 segundos en caso de expiración
+setInterval(() => {
+    if (!AuthService.isAuthenticated()) {
+        logout();
+    }
+}, 30000);
+
+
+
 //TOKEN
 const AuthService = {
     // Usuarios válidos de prueba
@@ -168,9 +177,15 @@ function updateNavbar() {
         userInfo.style.display = 'flex';
         switchToPage('dashboard');
         updateDashboard();
+
+        //Se activa el temporizador
+        startTokenTimer();
     } else {
         userInfo.style.display = 'none';
         switchToPage('loginPage');
+
+        //Se para el temporizador
+        stopTokenTimer();
     }
 }
 
@@ -187,5 +202,43 @@ function updateDashboard() {
         } else {
             adminSection.style.display = 'none';
         }
+    }
+}
+
+//Temporizador
+let timerInterval;
+
+function startTokenTimer() {
+    //Se limia el temporizador
+    stopTokenTimer(); 
+    
+    timerInterval = setInterval(() => {
+        const user = AuthService.getUser();
+        if (!user) {
+            showAlert('warning', '⏱️ Tu sesión ha expirado. Por favor, inicia sesión nuevamente');
+            logout();
+            return;
+        }
+
+        const now = Math.floor(Date.now() / 1000);
+        const timeLeft = user.expiresAt - now;
+
+        if (timeLeft <= 0) {
+            showAlert('warning', '⏱️ Tu sesión ha expirado. Por favor, inicia sesión nuevamente');
+            logout();
+            return;
+        }
+
+        const minutes = Math.floor(timeLeft / 60);
+        const seconds = timeLeft % 60;
+        document.getElementById('tokenTimer').innerHTML = `⏱️ ${minutes}:${seconds.toString().padStart(2, '0')}`;
+
+    }, 1000);
+}
+
+function stopTokenTimer() {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
     }
 }
