@@ -1,5 +1,46 @@
-//Variable del cache de las busquedas en la api
+
+// Variables globales
+let allPokemon = [];
+let filteredPokemon = [];
+let displayedPokemon = [];
+let currentOffset = 0;
+const limit = 20;
+let isLoading = false;
+let allTypes = [];
 const pokemonCache = {};
+
+// Inicializar la aplicación
+async function init() {
+    await loadTypes();
+    
+}
+
+// Cargar tipos de Pokémon
+async function loadTypes() {
+    try {
+        const response = await fetch('https://pokeapi.co/api/v2/type');
+        const data = await response.json();
+        allTypes = data.results;
+        
+        const typeFilter = document.getElementById('typeFilter');
+        allTypes.forEach(type => {
+            const option = document.createElement('option');
+            option.value = type.name;
+            option.textContent = type.name.charAt(0).toUpperCase() + type.name.slice(1);
+            typeFilter.appendChild(option);
+        });
+    } catch (error) {
+        console.error('Error cargando tipos:', error);
+    }
+}
+
+
+
+// Actualizar contador
+function updateTotalCount() {
+    document.getElementById('totalCount').textContent = 
+        `Total: ${filteredPokemon.length} Pokémon`;
+}
 
 // BUSQUEDA DE POKEMON
 async function searchPokemon() {
@@ -116,11 +157,12 @@ function resetCard() {
     document.getElementById('card').classList.remove('flipped');
 }
 
-// Event listeners
-document.getElementById('card').addEventListener('click', toggleCardFlip);
 
 document.getElementById('searchInput').addEventListener('keypress', (e) => {
     if (e.key === 'Enter') {
         searchPokemon();
     }
 });
+
+
+init();
