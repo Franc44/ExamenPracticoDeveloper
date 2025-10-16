@@ -17,36 +17,6 @@
     font-size: 1.5rem;
 }
 
-.user-info {
-    display: flex;
-    align-items: center;
-    gap: 2rem;
-}
-
-.user-details {
-    text-align: end;
-}
-
-.user-name {
-    color: white;
-    font-weight: bold;
-    font-size: 1rem;
-    margin: 0;
-}
-
-.user-role {
-    font-size: 0.85rem;
-    color: #667eea;
-    text-transform: uppercase;
-    margin: 0;
-}
-
-.token-timer {
-    font-size: 0.85rem;
-    color: #ff6b6b;
-    font-weight: bold;
-}
-
 .container-main {
     flex: 1;
     display: flex;
@@ -84,53 +54,9 @@
     padding: 2rem;
 }
 
-.demo-users {
-    background-color: #f5f5f5;
-    border-left: 4px solid #667eea;
-    font-size: 0.9rem;
-}
-
-.demo-users p {
-    margin: 0.5rem 0;
-}
-
-.demo-users code {
-    background-color: #e9ecef;
-    padding: 2px 6px;
-    border-radius: 3px;
-}
-
-.dashboard-content {
-    width: 100%;
-    padding: 2rem;
-}
-
-.dashboard-card {
-    background: white;
-    border-radius: 10px;
-    padding: 2rem;
-    margin-bottom: 1.5rem;
-    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-}
-
-.dashboard-card h2 {
-    color: #667eea;
-    margin-bottom: 1rem;
-    font-size: 1.5rem;
-}
-
-.dashboard-card p {
-    color: #555;
-    line-height: 1.6;
-}
-
-.admin-only {
-    border-left: 4px solid #ff6b6b;
-}
-
 .info-text {
     font-size: 0.9rem;
-    color: #999;
+    color: white;
     margin-top: 0.5rem;
 }
 
@@ -209,19 +135,37 @@
 }
 
 .pokemon-id {
-    font-size: 28px;
+    font-size: 1rem;
+    opacity: 0.9;
+    margin-bottom: 15px;
+}
+
+.pokemon-name {
+    font-size: 2rem;
     font-weight: bold;
     margin-bottom: 10px;
     text-transform: capitalize;
 }
 
-.pokemon-name {
-    font-size: 14px;
-    opacity: 0.9;
-    margin-bottom: 15px;
-}
-
 .loading-text {
     color: #667eea;
+    font-weight: bold;
+}
+
+ .stat-box {
+    background: rgba(255, 255, 255, 0.2);
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+.stat-name {
+    font-size: 12px;
+    opacity: 0.9;
+    margin-bottom: 5px;
+}
+
+.stat-value {
+    font-size: 22px;
     font-weight: bold;
 }

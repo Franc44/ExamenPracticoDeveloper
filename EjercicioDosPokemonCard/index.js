@@ -32,10 +32,10 @@ async function searchPokemon() {
             pokemonCache[query] = pokemon;
         }
 
-
         //Mostrar datos
         displayPokemon(pokemon);
         setLoading(false);
+        resetCard(); //La posicion de la carta vuelve a su estado original
 
     }catch (error){
         setLoading(false);
@@ -105,3 +105,22 @@ function displayPokemon(pokemon){
     // Mostrar card
     document.getElementById('cardContainer').classList.remove('d-none');
 }
+
+ // Función para hacer flip
+function toggleCardFlip() {
+    document.getElementById('card').classList.toggle('flipped');
+}
+
+// Función para resetear la card a posición inicial
+function resetCard() {
+    document.getElementById('card').classList.remove('flipped');
+}
+
+// Event listeners
+document.getElementById('card').addEventListener('click', toggleCardFlip);
+
+document.getElementById('searchInput').addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+        searchPokemon();
+    }
+});
